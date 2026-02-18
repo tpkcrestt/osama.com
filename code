@@ -1,0 +1,206 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NottiOsama</title>
+    <link href="https://notti
+    .googleapis.com/css2?family=Syncopate:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #ff0000;
+            --black: #000000;
+            --purple: #7b00fe;
+            --bg: #1a0036; 
+            --glass: rgba
+                         (255, 255, 255, 0.02);
+            --glass-border: rgba(255, 204, 0, 0.15);
+        }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif; 
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+        body { background-color: var(--bg); color: #fff; overflow-x: hidden; padding-bottom: 60px; cursor: pointer; }
+        .hero { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .cover-area {
+            width: 100%; height: 180px; 
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            background-size: cover; 
+            background-position: center;
+            border-bottom: 2px solid var(--accent);
+            transition: background 0.5s ease-in-out;
+        }
+        .profile-container { margin-top: -60px; text-align: center; z-index: 10; }
+        .profile-hex {
+            width: 120px; height: 120px; padding: 4px; background: var(--bg);
+            border-radius: 50%; display: inline-block;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); border: 2px solid var(--gold);
+        }
+        .profile-hex img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .name-wrapper { margin-top: 15px; display: flex; gap: 3px; justify-content: center; align-items: center; font-family: 'Syncopate', sans-serif; }
+        .wave-letter {
+            font-size: 1.8rem; font-weight: 700; color: var(--gold);
+            text-transform: uppercase; display: inline-block;
+            animation: moveWave 2.5s ease-in-out infinite;
+            animation-delay: calc(0.15s * var(--i));
+        }
+        .verified-badge {
+            font-size: 1.2rem;
+            color: var(--blue);
+            margin-left: 5px;
+            animation: moveWave 2.5s ease-in-out infinite;
+            animation-delay: 1.35s;
+        }
+        @keyframes moveWave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); filter: drop-shadow(0 0 8px var(--accent)); }
+        }
+        .tagline { text-align: center; color: var(--gold); opacity: 0.5; letter-spacing: 4px; font-size: 0.6rem; margin-top: 5px; text-transform: uppercase; }
+        section { padding: 40px 10% 10px; max-width: 1100px; margin: 0 auto; width: 100%; }
+        .section-header {
+            font-family: 'Syncopate', sans-serif; font-size: 0.8rem;
+            color: var(--gold); margin-bottom: 25px; display: flex; align-items: center; gap: 10px;
+        }
+        .section-header::after { content: ""; height: 1px; flex-grow: 1; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.2; }
+        .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+        .stack-item { 
+            background: var(--glass); 
+            border: 1px solid var(--glass-border); 
+            padding: 15px; 
+            border-radius: 8px; 
+            text-align: center; 
+            transition: 0.2s ease; 
+        }
+        .stack-item:active { 
+            background: var(--accent); 
+            box-shadow: 0 0 15px var(--accent);
+            transform: translateY(-3px);
+        }
+        .stack-item i { font-size: 1.5rem; color: var(--accent); margin-bottom: 8px; display: block; }
+        .stack-item span { font-size: 0.7rem; font-weight: 700; color: #ccc; }
+        .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
+        .mission-card {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            padding: 25px 15px; border-radius: 10px; text-decoration: none;
+            transition: 0.4s; text-align: center; display: flex; flex-direction: column; align-items: center;
+        }
+        .mission-card:active { background: var(--gold); }
+        .mission-card:active i, .mission-card:active h3 { color: #000; }
+        .mission-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 12px; }
+        .mission-card h3 { font-family: 'Syncopate', sans-serif; font-size: 0.7rem; color: #fff; }
+        .chat-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            display: flex; flex-direction: column;
+            height: 450px; width: 100%; overflow: hidden;
+        }
+        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .bubble { max-width: 80%; padding: 10px 15px; border-radius: 20px; font-size: 0.88rem; line-height: 1.4; word-wrap: break-word; }
+        .ai-bubble { align-self: flex-start; background: #242526; color: #fff; border-bottom-left-radius: 4px; }
+        .user-bubble { align-self: flex-end; background: #0084ff; color: #fff; border-bottom-right-radius: 4px; }
+        .chat-bar { padding: 12px 25px; background: rgba(0, 0, 0, 0.3); display: flex; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .input-wrapper { flex: 1; background: #3a3b3c; border-radius: 25px; padding: 8px 20px; display: flex; align-items: center; }
+        .chat-bar input { width: 100%; background: transparent; border: none; color: #fff; outline: none; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <audio id="bgMusic" loop><source src="osama
+    .mp3" type="audio/mpeg"></audio>
+    <header class="hero">
+        <div class="cover-area" id="randomCover"></div>
+        <div class="profile-container">
+            <div class="profile-hex"><img src="https://i.gifer.com/94k1.gif" alt="NottiOsama"></div>
+            <div class="name-wrapper">
+                <span class="wave-letter" style="--i:1">N</span><span class="wave-letter" style="--i:2"></span></span><span class="wave-letter" style="--i:3">O</span><span class="wave-letter" style="--i:4">T</span><span class="wave-letter" style="--i:5">T</span><span class="wave-letter" style="--i:6">I</span><span class="wave-letter" style="--i:7"></span><span class="wave-letter" style="--i:8"></span>
+                <i class="fas fa-check-circle verified-badge"></i>
+            </div>
+            <p class="tagline">UNDEFEATED  LEGEND - NG • Fullstack Dev</p>
+        </div>
+    </header>
+    <section id="stack">
+        <div class="section-header">SKILL_SET</div>
+        <div class="stack-grid">
+            <div class="stack-item"><i class="fab fa-js"></i><span>JAVASCRIPT</span></div>
+            <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
+            <div class="stack-item"><i class="fab fa-node-js"></i><span>NODE.JS</span></div>
+            <div class="stack-item"><i class="fas fa-database"></i><span>SQL DB</span></div>
+            <div class="stack-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+            <div class="stack-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+        </div>
+    </section>
+    <section id="missions">
+        <div class="section-header">PROJECTS</div>
+        <div class="mission-grid">
+            <a href="https://autobot-2026-8ba9.onrender.com" class="mission-card" target="_blank"><i class="fas fa-robot"></i><h3>AUTOBOT</h3></a>
+            <a href="https://kurapika-godz.onrender.com" class="mission-card" target="_blank"><i class="fas fa-fire-alt"></i><h3>AUTO SHARE</h3></a>
+        </div>
+    </section>
+    <section id="socials">
+        <div class="section-header">CONNECT</div>
+        <div class="mission-grid">
+            <a href="https://www.facebook.com/61585003982217" class="mission-card" target="_blank"><i class="fab fa-facebook-f"></i><h3>FACEBOOK</h3></a>
+            <a href="https://discord.com/users/JzSanji" class="mission-card" target="_blank"><i class="fab fa-discord"></i><h3>DISCORD</h3></a>
+        </div>
+    </section>
+    <section id="ai-section">
+        <div class="section-header">NOTTI_BOT • AI</div>
+        <div class="chat-container">
+            <div class="chat-messages" id="chatBox">
+                <div class="bubble ai-bubble">Notti Bot is online. Press Enter to send.</div>
+            </div>
+            <div class="chat-bar">
+                <div class="input-wrapper">
+                    <input type="text" id="userInput" placeholder="Aa" onkeypress="if(event.key==='Enter') sendMessage()">
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const covers = [
+'https://i.gifer.com/en/B3gx',
+            'https://i.gifter.com/9BDf',
+            'https://i.gifer.com/ITel.gif',
+            'https://i.gifer.com/IW1q.gif'
+        ];
+        function setRandomCover() {
+            const coverEl = document.getElementById('randomCover');
+            const randomImg = covers[Math.floor(Math.random() * covers.length)];
+            coverEl.style.backgroundImage = `linear-gradient(to bottom, transparent, var(--bg)), url('${randomImg}')`;
+        }
+        setRandomCover();
+        const music = document.getElementById('bgMusic');
+        let isStarted = false;
+        document.body.addEventListener('click', () => {
+            if (!isStarted) {
+                music.play().then(() => isStarted = true).catch(e => {});
+            }
+        }, { once: false });
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const box = document.getElementById('chatBox');
+            const text = input.value.trim();
+            if (!text) return;
+            box.innerHTML += `<div class="bubble user-bubble">${text}</div>`;
+            input.value = '';
+            box.scrollTop = box.scrollHeight;
+            const aiId = "ai-" + Date.now();
+            box.innerHTML += `<div class="bubble ai-bubble" id="${aiId}">...</div>`;
+            box.scrollTop = box.scrollHeight;
+            try {
+                const res = await fetch(`https://urangkapolka.vercel.app/api/chatgpt4?prompt=${encodeURIComponent(text)}`);
+                const data = await res.json();
+                document.getElementById(aiId).innerText = data.answer || data.reply || data.response || "No response.";
+            } catch (e) {
+                document.getElementById(aiId).innerText = "❌ Error connecting.";
+            }
+            box.scrollTop = box.scrollHeight;
+        }
+    </script>
+</body>
+</html>
+
